@@ -6,7 +6,8 @@
 
 namespace graphics {
 
-RGBASurface::RGBASurface(unsigned width, unsigned height) {
+RGBASurface::RGBASurface(unsigned width, unsigned height) :
+        width_(width), height_(height) {
     surface_ = SDL_CreateRGBSurface(0, width, height, 32, ColorRGBA::RED_MASK,
         ColorRGBA::GREEN_MASK, ColorRGBA::BLUE_MASK, ColorRGBA::ALPHA_MASK);
     if (surface_ == NULL) {
@@ -39,6 +40,14 @@ ColorRGBA RGBASurface::get_pixel(unsigned x, unsigned y) const {
 
 SDL_Surface * RGBASurface::surface() {
     return surface_;
+}
+
+unsigned RGBASurface::width() const {
+    return width_;
+}
+
+unsigned RGBASurface::height() const {
+    return height_;
 }
 
 } // namespace graphics
